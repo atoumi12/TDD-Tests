@@ -44,6 +44,27 @@ namespace MonCine.Data
             NbProjection = 0;
         }
 
+        public Film(bool genID, string pName, List<Categorie> pCategories = null, List<Acteur> pActeurs = null,
+            List<Realisateur> pRealisateurs = null, bool pSurAffiche = false )
+        {
+            if (genID)
+            {
+                Id = ObjectId.GenerateNewId();
+            }
+
+            Name = pName;
+            Categories = pCategories ?? GenerateCategories();
+            Acteurs = pActeurs ?? new List<Acteur>();
+            Realisateurs = pRealisateurs ?? new List<Realisateur>();
+            SurAffiche = pSurAffiche;
+
+            Notes = GenerateNotes();
+            NoteMoyenne = CalculerMoyennesNotes();
+
+            DatesProjection = new List<DateTime>();
+            NbProjection = 0;
+        }
+
 
         #region DEV
 

@@ -15,9 +15,39 @@ namespace MonCine.Data
         public DALProjection(IMongoClient client = null) : base(client)
         {
             CollectionName = "Projection";
+            AddDefaultProjections();
         }
 
 
+        /// <summary>
+        /// Populer la collections film au départ
+        /// </summary>
+        private async void AddDefaultProjections()
+        {
+            List<Projection> projectionsList = new List<Projection>
+            {
+                new Projection(new Salle(1), new Film("Film1 Dal Projection"), new DateTime(2022, 01,01)),
+                new Projection(new Salle(2), new Film("Film1 Dal Projection"), new DateTime(2022, 04,20)),
+                new Projection(new Salle(3), new Film("Film2 Dal Projection"), new DateTime(2022, 04,20)),
+                new Projection(new Salle(4), new Film("Film2 Dal Projection"), DateTime.Now)
+            };
+
+            try
+            {
+                var collection = database.GetCollection<Projection>(CollectionName);
+                if (collection.CountDocuments(Builders<Projection>.Filter.Empty) <= 0)
+                {
+                    await collection.InsertManyAsync(projectionsList);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Impossible d'ajouter des projections dans la collection " + ex.Message, "Erreur",
+                    MessageBoxButton.OK,
+                    MessageBoxImage.Error);
+                throw;
+            }
+        }
         /// <summary>
         /// Récupère l'ensemble des projections de la BD
         /// </summary>
@@ -62,11 +92,17 @@ namespace MonCine.Data
             try
             {
                 var collection = database.GetCollection<Projection>(CollectionName);
-                projections = collection.Find(Builders<Projection>.Filter.Eq(x => x.Film.Id, pFilm.Id)).ToList();
+                //projections = collection.Find(Builders<Projection>.Filter.Eq(x => x.Film.Id, pFilm.Id)).ToList();
+
+                //FilterDefinition<Projection> filer = Builders<Projection>.Filter.Where(x => x.Film.Id == pFilm.Id);
+                //projections = collection.Find(filer).ToList();
+
+                projections = collection.FindSync(Builders<Projection>.Filter.Empty).ToList();
+                projections = projections.Where(x => x.Film.Id == pFilm.Id).ToList();
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"Impossible d'ajouter la projection {pFilm.Id} dans la collection {ex.Message}",
+                MessageBox.Show($"Impossible de récupérer les projections du film {pFilm.Id} de la collection {ex.Message}",
                     "Erreur d'ajout", MessageBoxButton.OK, MessageBoxImage.Error);
 
                 throw;

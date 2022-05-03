@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Printing;
 using System.Text;
 using System.Threading;
+using System.Windows;
 using MonCine.Data;
 using MongoDB.Driver;
 using Moq;
@@ -30,11 +32,12 @@ namespace MonCineTests
 
             projectionsList = new List<Projection>
             {
-                new Projection(new Salle(1), new Film("Film1 Dal Projection"), new DateTime(2022, 01,01)),
-                new Projection(new Salle(2), new Film("Film1 Dal Projection"), new DateTime(2022, 04,20)),
-                new Projection(new Salle(3), new Film("Film2 Dal Projection"), new DateTime(2022, 04,20)),
-                new Projection(new Salle(4), new Film("Film2 Dal Projection"), DateTime.Now)
+                new Projection(new Salle(1), new Film(true,"Film1 Dal Projection"), new DateTime(2022, 01,01)),
+                new Projection(new Salle(2), new Film(true,"Film1 Dal Projection"), new DateTime(2022, 04,20)),
+                new Projection(new Salle(3), new Film(true,"Film2 Dal Projection"), new DateTime(2022, 04,20)),
+                new Projection(new Salle(4), new Film(true,"Film2 Dal Projection"), DateTime.Now)
             };
+
         }
 
 
@@ -205,7 +208,7 @@ namespace MonCineTests
             });
         }
 
-
+        // TODO: CORRIEGER CE TEST !!
         [Fact]
         public void GetProjectionsOfFilm_moqFind_ReturnProjectionListOfFilm()
         {
@@ -215,12 +218,13 @@ namespace MonCineTests
             var dal = new DALProjection(mongoClient.Object);
 
             Film film = projectionsList[0].Film;
+            List<Projection> projectionsAttentu = projectionsList.Where(x => x.Film.Id == film.Id).ToList();
+            // Act
+
+            List<Projection> projections = dal.GetProjectionsOfFilm(film);
 
             // Act and Assert
-            ExceptionUtil.AssertThrows<ArgumentNullException>(delegate
-            {
-                dal.GetProjectionsOfFilm(film);
-            });
+            Assert.Equal(projectionsAttentu.Count, projections.Count);
         }
 
 
