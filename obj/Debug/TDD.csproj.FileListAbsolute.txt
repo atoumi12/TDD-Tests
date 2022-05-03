@@ -1,0 +1,8 @@
+C:\Users\ahmed\OneDrive - Cégep Garneau\Desktop\ETUDES\Informatique\SESSION 6\Conception-qualite-logicielle\Cours 13\TDD\obj\Debug\TDD.csproj.AssemblyReference.cache
+C:\Users\ahmed\OneDrive - Cégep Garneau\Desktop\ETUDES\Informatique\SESSION 6\Conception-qualite-logicielle\Cours 13\TDD\obj\Debug\TDD.csproj.SuggestedBindingRedirects.cache
+C:\Users\ahmed\OneDrive - Cégep Garneau\Desktop\ETUDES\Informatique\SESSION 6\Conception-qualite-logicielle\Cours 13\TDD\obj\Debug\TDD.csproj.CoreCompileInputs.cache
+C:\Users\ahmed\OneDrive - Cégep Garneau\Desktop\ETUDES\Informatique\SESSION 6\Conception-qualite-logicielle\Cours 13\TDD\bin\Debug\TDD.exe.config
+C:\Users\ahmed\OneDrive - Cégep Garneau\Desktop\ETUDES\Informatique\SESSION 6\Conception-qualite-logicielle\Cours 13\TDD\bin\Debug\TDD.exe
+C:\Users\ahmed\OneDrive - Cégep Garneau\Desktop\ETUDES\Informatique\SESSION 6\Conception-qualite-logicielle\Cours 13\TDD\bin\Debug\TDD.pdb
+C:\Users\ahmed\OneDrive - Cégep Garneau\Desktop\ETUDES\Informatique\SESSION 6\Conception-qualite-logicielle\Cours 13\TDD\obj\Debug\TDD.exe
+C:\Users\ahmed\OneDrive - Cégep Garneau\Desktop\ETUDES\Informatique\SESSION 6\Conception-qualite-logicielle\Cours 13\TDD\obj\Debug\TDD.pdb
