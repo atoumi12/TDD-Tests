@@ -7,6 +7,7 @@ namespace MonCineTests
 {
     public class ExceptionUtil
     {
+        
         public static void AssertThrows<exception>(Action method) where exception : Exception
         {
             try
