@@ -15,6 +15,8 @@ namespace TDD
             if (string.IsNullOrWhiteSpace(input))
                 return 0;
 
+            
+
 
             //if(input.Contains())
             string[] delimeter = new string[] { ";/" }; 
